@@ -1,20 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Cadastrar Contatos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Formulário de Cadastro -->
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input [(ngModel)]="contato.nome"></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="contato.email" type="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Telefone</ion-label>
+    <ion-input [(ngModel)]="contato.telefone"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="salvarContatos()">
+  {{ indiceEdicao >=  0 ? 'Atualizar' : 'Cadastrar'}} Contato</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let c of contatos; let i = index">
+    <ion-label>
+      <h2>{{ c.nome }}</h2>
+      <p>{{ c. email }}</p>
+      <p>{{ c.telefone }}</p>
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button (click)="editarContato(i)">Editar</ion-button>
+      <ion-button color="danger" (click)="excluirContato(i)">Excluir</ion-button>
+    </ion-buttons>
+    </ion-item>
+  </ion-list>
 </ion-content>
